@@ -52,7 +52,8 @@ var protractor = function(options) {
 			args.unshift(options.configFile);
 		}
 
-		child = child_process.spawn(path.resolve(getProtractorDir() + '/protractor'+winExt), args, {
+		process.env.PATH = process.env.PATH + ';' + getProtractorDir();
+		child = child_process.spawn('protractor' + winExt, args, {
 			stdio: 'inherit',
 			env: process.env
 		}).on('exit', function(code) {
